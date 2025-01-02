@@ -63,7 +63,7 @@ const detailPage = () => {
   }, [id]);
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar />
       <div className="grid place-items-center m-0 h-screen bg-[#8EACCD] text-[#fdfcfd] font-[Poppins]">
         <div className="card flex items-center w-[75vw] max-w-[650px] p-[50px_30px_50px_20px] bg-[#121017] rounded-[24px]">
           <img src={detailsData.avatar} alt="" className="max-w-[280px] w-[35vw] h-[300px] object-cover -ml-[60px] mr-[30px] rounded-[inherit] shadow-card"/>

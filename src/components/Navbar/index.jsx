@@ -2,7 +2,20 @@ import { useEffect, useRef, useState, useNavigate } from "react";
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("token") !== null
+  ); // Check login status
+  const navigate = useNavigate ? useNavigate() : undefined;
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    navigate("/login");
+  };
+
+  const handleLogin = () => {
+    navigate("/login"); // Redirect to login page
+  };
   const lastScrollTop = useRef(0);
 
   useEffect(() => {
@@ -50,12 +63,21 @@ const Navbar = () => {
           >
             User
           </a>
-          <a
-            href="/login"
-            className="text-white/96 font-normal h-[72px] grid place-items-center hover:text-white/96"
-          >
-            Login
-          </a>
+          {isLoggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="text-[#4f52ff] font-normal h-[72px] px-4 grid place-items-center hover:text-[#3b3df5] hover:bg-[#f5f5f5] rounded-lg"
+            >
+              <a href="/login">Logout</a>
+            </button>
+          ) : (
+            <button
+              onClick={handleLogin}
+              className="text-[#4f52ff] font-normal h-[72px] px-4 grid place-items-center hover:text-[#3b3df5] hover:bg-[#f5f5f5] rounded-lg"
+            >
+              <a href="/login">Login</a>
+            </button>
+          )}
         </div>
       </nav>
     </div>
